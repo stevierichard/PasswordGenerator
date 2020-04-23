@@ -123,6 +123,9 @@ function passOption() {
       console.log(userPrefference.isSpecChar);
 
       writePassword();
+    } else {
+      console.log("no loop");
+      alert("You need at least one Preference to proceed");
     }
   } else {
     alert("Your password must be in between 8 and 128 characters");
@@ -139,29 +142,66 @@ function generatePassword() {
   var possibleArray = [];
   var definiteChar = [];
 
-  if (userPrefference.isLowerCase === true) {
-    possibleArray = possibleArray.concat(lowerCase);
-    var randomisLowerCase = getRandom(lowerCase);
-    definiteChar.push(randomisLowerCase);
-  }
+  var loop = true;
 
-  if (userPrefference.isUpperCase === true) {
-    possibleArray = possibleArray.concat(upperCase);
-    var randomisUpperCase = getRandom(upperCase);
-    definiteChar.push(randomisUpperCase);
-  }
-  if (userPrefference.isUserNumber === true) {
-    possibleArray = possibleArray.concat(numberList);
-    var randomisUserNumber = getRandom(numberList);
-    definiteChar.push(randomisUserNumber);
-  }
-  if (userPrefference.isSpecChar === true) {
-    possibleArray = possibleArray.concat(charArr);
-    var randomisSpecChar = getRandom(charArr);
-    definiteChar.push(randomisSpecChar);
-  }
-  console.log(possibleArray);
+  while (loop) {
+    if (userPrefference.isLowerCase === true) {
+      if (Math.random() > 0.5) {
+        console.log("upperCase chosen");
+        possibleArray = possibleArray.concat(lowerCase);
+        var randomisLowerCase = getRandom(lowerCase);
+        definiteChar.push(randomisLowerCase);
+        if (definiteChar.length >= userPrefference.passLength) {
+          loop = false;
+          break;
+        }
+      }
+    }
 
+    if (userPrefference.isUpperCase === true) {
+      if (Math.random() > 0.5) {
+        console.log("upperCase chosen");
+        possibleArray = possibleArray.concat(upperCase);
+        var randomisUpperCase = getRandom(upperCase);
+        definiteChar.push(randomisUpperCase);
+        if (definiteChar.length >= userPrefference.passLength) {
+          loop = false;
+          break;
+        }
+      } else {
+        console.log("upperCase not chosen");
+      }
+    }
+    if (userPrefference.isUserNumber === true) {
+      if (Math.random() > 0.5) {
+        console.log("upperCase chosen");
+        possibleArray = possibleArray.concat(numberList);
+        var randomisUserNumber = getRandom(numberList);
+        definiteChar.push(randomisUserNumber);
+        if (definiteChar.length >= userPrefference.passLength) {
+          loop = false;
+          break;
+        }
+      }
+    }
+    if (userPrefference.isSpecChar === true) {
+      if (Math.random() > 0.5) {
+        console.log("upperCase chosen");
+        possibleArray = possibleArray.concat(charArr);
+        var randomisSpecChar = getRandom(charArr);
+        definiteChar.push(randomisSpecChar);
+        if (definiteChar.length >= userPrefference.passLength) {
+          loop = false;
+          break;
+        }
+      }
+    }
+  }
+  console.log("possible Array" + possibleArray);
+  console.log("possible Char: ", definiteChar);
+
+  newPassword = definiteChar.join("");
+  console.log(newPassword);
   return newPassword;
 }
 function getRandom(array) {
@@ -185,4 +225,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", passOption());
+generateBtn.addEventListener("click", passOption);
