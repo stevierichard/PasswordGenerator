@@ -141,18 +141,24 @@ function generatePassword() {
 
   if (userPrefference.isLowerCase === true) {
     possibleArray = possibleArray.concat(lowerCase);
-    var randomLowerCase = getRandom(lowerCase);
-    definiteChar.push(randomLowerCase);
+    var randomisLowerCase = getRandom(lowerCase);
+    definiteChar.push(randomisLowerCase);
   }
 
   if (userPrefference.isUpperCase === true) {
     possibleArray = possibleArray.concat(upperCase);
+    var randomisUpperCase = getRandom(upperCase);
+    definiteChar.push(randomisUpperCase);
   }
   if (userPrefference.isUserNumber === true) {
     possibleArray = possibleArray.concat(numberList);
+    var randomisUserNumber = getRandom(numberList);
+    definiteChar.push(randomisUserNumber);
   }
   if (userPrefference.isSpecChar === true) {
     possibleArray = possibleArray.concat(charArr);
+    var randomisSpecChar = getRandom(charArr);
+    definiteChar.push(randomisSpecChar);
   }
   console.log(possibleArray);
 
